@@ -1,17 +1,42 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Apadrinhamentos</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="itens" *ngIf = "apadrinhamentos">
+  <ion-item >
+    <ion-icon name="ios-pricetag" item-start></ion-icon>
+    Faturados
+    <ion-badge item-end >{{apadrinhamentos[0].faturados}}</ion-badge>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="logo-usd" item-start></ion-icon>
+    Recebidos
+    <ion-badge item-end>{{apadrinhamentos[0].recebidos}}</ion-badge>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="person-add" item-start></ion-icon>
+    Novos
+    <ion-badge item-end>{{apadrinhamentos[0].novos}}</ion-badge>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="close" item-start></ion-icon>
+    Cancelados
+    <ion-badge item-end>{{apadrinhamentos[0].cancelados}}</ion-badge>
+  </ion-item>
+
+  <ion-item>
+    <ion-icon name="md-contacts" item-start></ion-icon>
+    Base atual
+    <ion-badge item-end>{{apadrinhamentos[0].baseatual}}</ion-badge>
+  </ion-item>
+</div>
+
 </ion-content>
