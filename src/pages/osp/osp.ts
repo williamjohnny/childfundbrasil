@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ApadrinhamentoProvider } from '../../providers/apadrinhamento/apadrinhamento';
 
 /**
  * Generated class for the OspPage page.
@@ -15,11 +16,29 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class OspPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public osps:any[];
+  
+    constructor(
+      public navCtrl: NavController,
+      public service: ApadrinhamentoProvider
+    ) {
+      this.getDataosp();
+    }
+  
+  getDataosp(){
+      this.service.getDataosp().subscribe(
+      data=>this.osps=data,
+      err=>console.log(err)
+    )
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad OspPage');
+  
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+    this.getDataosp();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 1000);
   }
-
-}
+  
+  }

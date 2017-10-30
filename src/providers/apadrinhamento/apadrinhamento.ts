@@ -22,4 +22,12 @@ export class ApadrinhamentoProvider {
     return this.http.get(this.api+"apiRecupera.php").map(res=>res.json())
   }
 
+  getDatauc(){
+    return this.http.get(this.api+"apiRecuperauc.php").map(res=>res.json())
+  }
+
+  getDataosp(){
+    return this.http.get(this.api+"apiRecuperaosp.php").map(res=>res.json())
+  }
+
 }

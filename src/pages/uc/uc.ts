@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ApadrinhamentoProvider } from '../../providers/apadrinhamento/apadrinhamento';
 
 /**
  * Generated class for the UcPage page.
@@ -15,11 +16,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class UcPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public ucs:any[];
+  
+    constructor(
+      public navCtrl: NavController,
+      public service: ApadrinhamentoProvider
+    ) {
+      this.getDatauc();
+    }
+  
+  getDatauc(){
+      this.service.getDatauc().subscribe(
+      data=>this.ucs=data,
+      err=>console.log(err)
+    )
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad UcPage');
+  
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+    this.getDatauc();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 1000);
   }
-
-}
+  
+  
+  }

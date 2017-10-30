@@ -14,5 +14,14 @@
 
 
 <ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
 
+  <ion-list inset>
+    <button ion-item *ngFor="let uc of ucs">
+      {{uc.nome}}
+    </button>
+  </ion-list>
+  
 </ion-content>
